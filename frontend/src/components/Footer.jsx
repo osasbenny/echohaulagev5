@@ -9,8 +9,11 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Package className="h-8 w-8 text-secondary" />
-              <span className="text-xl font-bold">Echo Haulage</span>
+              <img 
+                src="/logo.png" 
+                alt="Echo Haulage Express" 
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-gray-400 text-sm">
               Your trusted partner for professional shipping and logistics
