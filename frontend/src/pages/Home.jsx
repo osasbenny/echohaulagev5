@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  Package, 
+  Search, 
+  Calculator, 
+  MapPin, 
+  Globe, 
+  FileText, 
+  TrendingUp, 
+  Truck,
+  ArrowRight
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Package,
-  Truck,
-  Globe,
-  Clock,
-  Shield,
-  TrendingUp,
-  Search,
-  ArrowRight,
-  CheckCircle,
-} from 'lucide-react';
 
 const Home = () => {
   const [trackingNumber, setTrackingNumber] = useState('');
@@ -22,238 +21,210 @@ const Home = () => {
   const handleTrack = (e) => {
     e.preventDefault();
     if (trackingNumber.trim()) {
-      navigate(`/track/${trackingNumber}`);
+      navigate(`/track/${trackingNumber.trim()}`);
     }
   };
 
-  const services = [
-    {
-      icon: <Truck className="h-12 w-12 text-primary" />,
-      title: 'Express Delivery',
-      description: 'Next-day delivery for urgent shipments with priority handling',
-    },
-    {
-      icon: <Package className="h-12 w-12 text-primary" />,
-      title: 'Standard Shipping',
-      description: 'Reliable 3-day delivery at affordable rates',
-    },
-    {
-      icon: <Globe className="h-12 w-12 text-primary" />,
-      title: 'International',
-      description: 'Worldwide shipping with customs clearance assistance',
-    },
+  const quickActions = [
+    { icon: Package, label: 'Ship', link: '/dashboard/create-shipment', color: 'bg-orange' },
+    { icon: Search, label: 'Track', link: '/track', color: 'bg-navy-light' },
+    { icon: Calculator, label: 'Get Rates', link: '/rates', color: 'bg-navy-light' },
+    { icon: MapPin, label: 'Locations', link: '/locations', color: 'bg-navy-light' },
   ];
 
   const features = [
-    {
-      icon: <Clock className="h-8 w-8 text-secondary" />,
-      title: 'Real-Time Tracking',
-      description: 'Track your shipments 24/7 with live updates',
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-secondary" />,
-      title: 'Secure Delivery',
-      description: 'Insurance coverage and signature confirmation',
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-secondary" />,
-      title: 'Business Solutions',
-      description: 'Scalable logistics for growing businesses',
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      company: 'TechStart Inc.',
-      text: 'Echo Haulage has been instrumental in our e-commerce growth. Their reliable service and competitive rates are unmatched.',
-    },
-    {
-      name: 'Michael Chen',
-      company: 'Global Imports',
-      text: 'International shipping made easy. The customs clearance support saved us countless hours and headaches.',
-    },
-    {
-      name: 'Emily Rodriguez',
-      company: 'Boutique Fashion',
-      text: 'Fast, reliable, and professional. Our customers love the tracking experience and timely deliveries.',
-    },
+    { icon: Globe, title: 'International Trade Support' },
+    { icon: FileText, title: 'Business Logistics Optimization' },
+    { icon: TrendingUp, title: 'Global Network Coverage' },
+    { icon: Truck, title: 'Express Shipping' },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Professional Shipping & Logistics
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-100">
-              Fast, Reliable, and Secure Delivery Solutions Worldwide
-            </p>
+      <section className="hero-gradient text-white py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Moving Your World with{' '}
+                <span className="text-orange">Speed</span> and{' '}
+                <span className="text-orange">Precision</span>
+              </h1>
+              <p className="text-xl mb-8 text-gray-200">
+                Global logistics solutions for individuals, SMEs, and enterprises.
+                <br />
+                From express shipping to international trade support.
+              </p>
 
-            {/* Tracking Search */}
-            <div className="max-w-2xl mx-auto">
-              <form onSubmit={handleTrack} className="flex gap-2">
-                <div className="flex-1">
-                  <Input
-                    type="text"
-                    placeholder="Enter tracking number (e.g., EHE-20250104-12345)"
-                    value={trackingNumber}
-                    onChange={(e) => setTrackingNumber(e.target.value)}
-                    className="h-14 text-lg bg-white"
-                  />
-                </div>
+              {/* Quick Action Buttons */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                {quickActions.map((action, index) => (
+                  <button
+                    key={index}
+                    onClick={() => navigate(action.link)}
+                    className={\`\${action.color} hover:opacity-90 text-white p-6 rounded-lg flex flex-col items-center justify-center space-y-2 transition-all hover:scale-105\`}
+                  >
+                    <action.icon className="h-8 w-8" />
+                    <span className="font-semibold">{action.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - Tracking Card */}
+            <div className="bg-navy-light/50 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl">
+              <h2 className="text-3xl font-bold mb-4">Track Your Shipment</h2>
+              <p className="text-gray-300 mb-6">
+                Tracking Number / Reference / Container ID
+              </p>
+              <form onSubmit={handleTrack} className="space-y-4">
+                <Input
+                  type="text"
+                  placeholder="Enter tracking number..."
+                  value={trackingNumber}
+                  onChange={(e) => setTrackingNumber(e.target.value)}
+                  className="w-full px-6 py-4 text-lg bg-white/10 border-white/30 text-white placeholder:text-gray-400 focus:border-orange focus:ring-orange"
+                />
                 <Button
                   type="submit"
-                  size="lg"
-                  className="h-14 px-8 bg-secondary hover:bg-secondary/90"
+                  className="w-full bg-orange hover:bg-orange-dark text-white py-4 text-lg font-semibold flex items-center justify-center space-x-2"
                 >
-                  <Search className="h-5 w-5 mr-2" />
-                  Track
+                  <Search className="h-5 w-5" />
+                  <span>Track Package</span>
                 </Button>
               </form>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Button
-                size="lg"
-                onClick={() => navigate('/dashboard/create-shipment')}
-                className="bg-white text-primary hover:bg-gray-100"
-              >
-                Create Shipment
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate('/rates')}
-                className="border-white text-white hover:bg-white/10"
-              >
-                Calculate Rates
-              </Button>
+              <p className="text-sm text-gray-400 mt-4 text-center">
+                For multiple packages, try{' '}
+                <a href="/track" className="text-orange hover:underline">
+                  bulk tracking
+                </a>
+              </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Features Ticker */}
+      <section className="bg-orange py-4 overflow-hidden">
+        <div className="flex items-center space-x-12 animate-marquee whitespace-nowrap">
+          {[...features, ...features].map((feature, index) => (
+            <div key={index} className="flex items-center space-x-3 text-white">
+              <feature.icon className="h-6 w-6" />
+              <span className="font-semibold text-lg">{feature.title}</span>
+              <span className="text-2xl">•</span>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Our Services
-            </h2>
+            <h2 className="text-4xl font-bold text-navy mb-4">Our Services</h2>
             <p className="text-xl text-gray-600">
-              Comprehensive logistics solutions for every need
+              Comprehensive logistics solutions tailored to your needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="hover:shadow-lg transition-shadow cursor-pointer"
-              >
-                <CardContent className="p-8 text-center">
-                  <div className="flex justify-center mb-4">{service.icon}</div>
-                  <h3 className="text-2xl font-semibold mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Echo Haulage?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Industry-leading features for peace of mind
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="bg-orange-100 rounded-full p-4 mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Express Shipping */}
+            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-orange">
+              <div className="bg-orange/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                <Truck className="h-8 w-8 text-orange" />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <h3 className="text-2xl font-bold text-navy mb-4">Express Shipping</h3>
+              <p className="text-gray-600 mb-6">
+                Fast, reliable delivery for time-sensitive shipments. Domestic and international express services available.
+              </p>
+              <Button
+                onClick={() => navigate('/services')}
+                className="bg-navy hover:bg-navy-light text-white w-full"
+              >
+                Learn More
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </div>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              What Our Customers Say
-            </h2>
-            <p className="text-xl text-gray-600">
-              Trusted by thousands of businesses worldwide
-            </p>
-          </div>
+            {/* International Trade */}
+            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-orange">
+              <div className="bg-orange/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                <Globe className="h-8 w-8 text-orange" />
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">International Trade</h3>
+              <p className="text-gray-600 mb-6">
+                Complete international shipping solutions with customs clearance and documentation support.
+              </p>
+              <Button
+                onClick={() => navigate('/services')}
+                className="bg-navy hover:bg-navy-light text-white w-full"
+              >
+                Learn More
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index}>
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mr-2" />
-                    <span className="text-sm text-gray-500">
-                      Verified Customer
-                    </span>
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">
-                    "{testimonial.text}"
-                  </p>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500">
-                      {testimonial.company}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {/* Business Solutions */}
+            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-t-4 border-orange">
+              <div className="bg-orange/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                <TrendingUp className="h-8 w-8 text-orange" />
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">Business Solutions</h3>
+              <p className="text-gray-600 mb-6">
+                Customized logistics solutions for businesses of all sizes. API integration and bulk shipping available.
+              </p>
+              <Button
+                onClick={() => navigate('/business')}
+                className="bg-navy hover:bg-navy-light text-white w-full"
+              >
+                Learn More
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="orange-gradient text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Ready to Ship with Echo Haulage?
-          </h2>
-          <p className="text-xl mb-8">
-            Join thousands of satisfied customers and experience hassle-free
-            shipping today
+      <section className="bg-navy text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Ship?</h2>
+          <p className="text-xl mb-8 text-gray-300">
+            Create your shipment in minutes and get instant rates
           </p>
-          <Button
-            size="lg"
-            onClick={() => navigate('/register')}
-            className="bg-white text-primary hover:bg-gray-100"
-          >
-            Get Started Now
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => navigate('/register')}
+              className="bg-orange hover:bg-orange-dark text-white px-8 py-6 text-lg"
+            >
+              Create Account
+            </Button>
+            <Button
+              onClick={() => navigate('/dashboard/create-shipment')}
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-navy px-8 py-6 text-lg"
+            >
+              Create Shipment
+            </Button>
+          </div>
         </div>
       </section>
+
+      <style jsx>{\`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
+        }
+      \`}</style>
     </div>
   );
 };

@@ -11,6 +11,8 @@ import CreateShipment from './pages/CreateShipment';
 import Payment from './pages/Payment';
 import AdminDashboard from './pages/AdminDashboard';
 import Services from './pages/Services';
+import Business from './pages/Business';
+import Support from './pages/Support';
 import './App.css';
 
 // Protected Route Component
@@ -65,6 +67,8 @@ function AppContent() {
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/business" element={<Business />} />
+            <Route path="/support" element={<Support />} />
             <Route path="/track" element={<Track />} />
             <Route path="/track/:trackingNumber" element={<Track />} />
             

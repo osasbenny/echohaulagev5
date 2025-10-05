@@ -43,33 +43,33 @@
 
 :root {
   --radius: 0.5rem;
-  /* Purple primary color (#4D148C) */
+  /* Navy Blue primary color (#0A2540) and Orange secondary (#FF8000) */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.15 0.05 240); /* Navy */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.15 0.05 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.35 0.15 300); /* Purple #4D148C */
+  --popover-foreground: oklch(0.15 0.05 240);
+  --primary: oklch(0.2 0.08 240); /* Navy #0A2540 */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.65 0.2 30); /* Orange #FF6600 */
+  --secondary: oklch(0.65 0.18 50); /* Orange #FF8000 */
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.65 0.18 50);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.35 0.15 300);
-  --chart-1: oklch(0.35 0.15 300);
-  --chart-2: oklch(0.65 0.2 30);
+  --ring: oklch(0.2 0.08 240);
+  --chart-1: oklch(0.2 0.08 240);
+  --chart-2: oklch(0.65 0.18 50);
   --chart-3: oklch(0.6 0.118 184.704);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.35 0.15 300);
+  --sidebar-foreground: oklch(0.15 0.05 240);
+  --sidebar-primary: oklch(0.2 0.08 240);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
@@ -84,9 +84,9 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.5 0.2 300);
+  --primary: oklch(0.3 0.1 240);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.7 0.22 30);
+  --secondary: oklch(0.7 0.2 50);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
@@ -96,14 +96,14 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.5 0.2 300);
-  --chart-2: oklch(0.7 0.22 30);
+  --chart-1: oklch(0.3 0.1 240);
+  --chart-2: oklch(0.7 0.2 50);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.5 0.2 300);
+  --sidebar-primary: oklch(0.3 0.1 240);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -120,13 +120,13 @@
   }
 }
 
-/* Custom styles for Echo Haulage Express */
+/* Custom styles for Echo Haulage Express - Navy & Orange Theme */
 .hero-gradient {
-  background: linear-gradient(135deg, #4D148C 0%, #6B21A8 50%, #7C3AED 100%);
+  background: linear-gradient(135deg, #0A2540 0%, #1a3a5c 50%, #2a4a6c 100%);
 }
 
 .orange-gradient {
-  background: linear-gradient(135deg, #FF6600 0%, #FF8533 100%);
+  background: linear-gradient(135deg, #FF8000 0%, #ff9933 100%);
 }
 
 .glass-effect {
@@ -142,5 +142,49 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #4D148C, #FF6600);
+  background: linear-gradient(to bottom, #0A2540, #FF8000);
+}
+
+/* Utility classes for navy and orange */
+.bg-navy {
+  background-color: #0A2540;
+}
+
+.bg-navy-light {
+  background-color: #1a3a5c;
+}
+
+.bg-orange {
+  background-color: #FF8000;
+}
+
+.text-navy {
+  color: #0A2540;
+}
+
+.text-orange {
+  color: #FF8000;
+}
+
+.border-orange {
+  border-color: #FF8000;
+}
+
+.hover\:bg-orange-dark:hover {
+  background-color: #e67300;
+}
+
+.btn-orange {
+  background-color: #FF8000;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #e67300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 128, 0, 0.3);
 }
