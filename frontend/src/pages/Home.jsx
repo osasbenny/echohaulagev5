@@ -64,7 +64,7 @@ const Home = () => {
                   <button
                     key={index}
                     onClick={() => navigate(action.link)}
-                    className={\`\${action.color} hover:opacity-90 text-white p-6 rounded-lg flex flex-col items-center justify-center space-y-2 transition-all hover:scale-105\`}
+                    className={`${action.color} hover:opacity-90 text-white p-6 rounded-lg flex flex-col items-center justify-center space-y-2 transition-all hover:scale-105`}
                   >
                     <action.icon className="h-8 w-8" />
                     <span className="font-semibold">{action.label}</span>
@@ -212,7 +212,7 @@ const Home = () => {
         </div>
       </section>
 
-      <style jsx>{\`
+      <style>{`
         @keyframes marquee {
           0% {
             transform: translateX(0);
@@ -224,7 +224,7 @@ const Home = () => {
         .animate-marquee {
           animation: marquee 30s linear infinite;
         }
-      \`}</style>
+      `}</style>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -45,7 +45,7 @@ const Track = () => {
   };
 
   // Auto-track if URL has tracking number
-  useState(() => {
+  useEffect(() => {
     if (urlTrackingNumber) {
       handleTrack();
     }
